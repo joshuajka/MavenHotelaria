@@ -29,7 +29,7 @@ public class Hotel implements Serializable{
 	private Integer qtdEstrelas;
 	
 	public Hotel() {
-		super();
+		super(); 
 	}
 
 	public Hotel(Integer idHotel, String nmNotel, String endereco, Integer qtdEstrelas) {

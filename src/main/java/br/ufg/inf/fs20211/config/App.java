@@ -19,7 +19,7 @@ import br.ufg.inf.fs20211.entities.Quarto;
 public class App {
 
 	public static void main(String[] args) {
-		System.out.println("TESTE");
+		System.out.println("Funciona");
 
 		testeJpaHospede();
 
@@ -52,7 +52,7 @@ public static void testeJpaHospedagem() {
 	}
 	
 	System.out.println("UPDATE");
-	Hospedagem hospedagem2 = hctrl.findById(1);
+	Hospedagem hospedagem2 = hctrl.findById(2);
 	hospedagem2.setId_quarto(6);
 	hospedagem2 = hctrl.update(hospedagem2);
 
@@ -75,13 +75,13 @@ public static void testeJpaHospede() {
 		
 		HospedeCtrl hospedectrl = new HospedeCtrl();
 		
-		System.out.println("Lista de Hóspedes Cadastrados");
+		System.out.println("Lista Hospedes Previa");
 		for (Hospede h : hospedectrl.findAll()) {
 			System.out.println(h);
 		}
 
-		System.out.println("Buscar pelo #ID 1");
-		Hospede hospede = hospedectrl.findById(1);
+		System.out.println("Buscar pelo #ID 2");
+		Hospede hospede = hospedectrl.findById(2);
 		System.err.println(hospede);
 		
 		Date data = new Date(1980,4,16);
@@ -111,7 +111,7 @@ public static void testeJpaHospede() {
 		h2 = hospedectrl.update(h2);
 		System.out.println("#ID alterado: " + h2);
 
-		System.out.println("Lista de Hóspedes Cadastrados");
+		System.out.println("Lista Final de Hospedes Cadastrados");
 		for (Hospede h : hospedectrl.findAll()) {
 			System.out.println(h);
 		}
@@ -119,7 +119,7 @@ public static void testeJpaHospede() {
 		System.out.println("Deletar #ID 1");
 		hospedectrl.delete(1);
 
-		System.out.println("Lista de Hóspedes Atualizada");
+		System.out.println("Lista de Hospedes Atualizada");
 		for (Hospede h : hospedectrl.findAll()) {
 			System.out.println(h);
 		}
