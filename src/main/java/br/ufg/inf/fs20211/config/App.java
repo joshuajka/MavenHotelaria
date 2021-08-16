@@ -7,9 +7,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.ufg.inf.fs.enums.CategoriaQuarto;
+import br.ufg.inf.fs20211.ctrl.HospedagemCtrl;
 import br.ufg.inf.fs20211.ctrl.HospedeCtrl;
 import br.ufg.inf.fs20211.ctrl.HotelCtrl;
 import br.ufg.inf.fs20211.ctrl.QuartoCtrl;
+import br.ufg.inf.fs20211.entities.Hospedagem;
 import br.ufg.inf.fs20211.entities.Hospede;
 import br.ufg.inf.fs20211.entities.Hotel;
 import br.ufg.inf.fs20211.entities.Quarto;
@@ -23,6 +25,33 @@ public class App {
 		testeJpaHospede();
 
 	} 
+	
+public static void testeJpaHospedagem() {
+	HospedagemCtrl hctrl = new HospedagemCtrl(); 
+	Date checkin = new Date(2021,20,8);
+	Date checkout = new Date(2021,25,8);
+	
+	Hospedagem hg1 = new Hospedagem(1,1,1,checkin,checkout);
+	Hospedagem hg2 = new Hospedagem(1,1,1,checkin,checkout);
+	Hospedagem hg3 = new Hospedagem(1,1,1,checkin,checkout);
+	Hospedagem hg4 = new Hospedagem(1,1,1,checkin,checkout); 
+	
+	hg1 = hctrl.insert(hg1);
+	System.out.println(hg1);
+	
+	hg2 = hctrl.insert(hg2);
+	System.out.println(hg2);
+	
+	hg3 = hctrl.insert(hg3);
+	System.out.println(hg3);
+	
+	hg4 = hctrl.insert(hg4);
+	System.out.println(hg4); 
+	
+	for(Hospedagem h: hctrl.findAll()) {
+		System.out.println(h);
+	}
+}
 	
 public static void testeJpaHospede() {
 		
@@ -125,47 +154,6 @@ public static void testeJpaHospede() {
 
 	public static void testeJpa() {
 		EntityManager em = DaoFactory.getEntityManager();
-		
-		// CREATE
-		/*//Hotel hotel = new Hotel(null, "Castro`s Park Hotel", "Goiânia", 5);
-		em.getTransaction().begin();
-		//em.persist(hotel);
-		Hotel h1 = new Hotel(null, "Ibis", "Goiânia", 3);
-		Hotel h2 = new Hotel(null, "Copacabana Palace", "Rio de Janeiro", 5);
-		Hotel h3 = new Hotel(null, "Denali Hotel", "Anápolis", 4);
-		
-		em.persist(h1);
-		em.persist(h2);
-		em.persist(h3);
-		
-		
-		em.getTransaction().commit();
-		*/
-		
-		// READ ALL
-		/*
-		System.out.println("Buscar Todos");
-		TypedQuery<Hotel> result = em.createQuery("from Hotel", Hotel.class);
-		List<Hotel> hoteis = result.getResultList();
-		for(Hotel h : hoteis) {
-			System.out.println(h);
-		}
-		
-		
-		// READ BY ID
-		Hotel h4 = em.find(Hotel.class, 3);
-		
-		System.out.println("Buscar Por ID");
-		System.out.println(h4);
-		
-		System.out.println("Buscar por Ocorrência");
-		String sql = "from Hotel h where h.nmHotel like :str";
-		TypedQuery<Hotel> result2 = em.createQuery(sql, Hotel.class);
-		result2.setParameter("str", "%i%");
-		hoteis = result2.getResultList();
-		for(Hotel h : hoteis) {
-			System.out.println(h);
-		}*/
 		
 		System.out.println("Update do Objeto");
 		Hotel hotelUpdate = em.find(Hotel.class, 2);
