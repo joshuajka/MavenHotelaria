@@ -19,8 +19,7 @@ import br.ufg.inf.fs20211.entities.Quarto;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Começando");
+		System.out.println("TESTE");
 
 		testeJpaHospede();
 
@@ -51,11 +50,39 @@ public static void testeJpaHospedagem() {
 	for(Hospedagem h: hctrl.findAll()) {
 		System.out.println(h);
 	}
+	
+	System.out.println("UPDATE");
+	Hospedagem hospedagem2 = hctrl.findById(1);
+	hospedagem2.setId_quarto(6);
+	hospedagem2 = hctrl.update(hospedagem2);
+
+	System.out.println("Lista de Hospedagens Cadastradas");
+	for (Hospedagem h : hctrl.findAll()) {
+		System.out.println(h);
+	}
+
+	System.out.println("Deletar hospedagem 1");
+	hctrl.delete(1);
+
+	System.out.println("Lista de Hospedagens Cadastradas");
+	for (Hospedagem h : hctrl.findAll()) {
+		System.out.println(h);
+	}
+	
 }
 	
 public static void testeJpaHospede() {
 		
 		HospedeCtrl hospedectrl = new HospedeCtrl();
+		
+		System.out.println("Lista de Hóspedes Cadastrados");
+		for (Hospede h : hospedectrl.findAll()) {
+			System.out.println(h);
+		}
+
+		System.out.println("Buscar pelo #ID 1");
+		Hospede hospede = hospedectrl.findById(1);
+		System.err.println(hospede);
 		
 		Date data = new Date(1980,4,16);
 		
@@ -76,7 +103,27 @@ public static void testeJpaHospede() {
 		
 		for(Hospede h: hospedectrl.findAll()) {
 			System.out.println(h);
+		} 
+		
+		System.out.println("UPDATE");
+		System.out.println("#ID original: " + h2.getId_hospede());
+		h2.setNm_hospede(h2.getNm_hospede() + " ALTERADO");
+		h2 = hospedectrl.update(h2);
+		System.out.println("#ID alterado: " + h2);
+
+		System.out.println("Lista de Hóspedes Cadastrados");
+		for (Hospede h : hospedectrl.findAll()) {
+			System.out.println(h);
 		}
+
+		System.out.println("Deletar #ID 1");
+		hospedectrl.delete(1);
+
+		System.out.println("Lista de Hóspedes Atualizada");
+		for (Hospede h : hospedectrl.findAll()) {
+			System.out.println(h);
+		}
+		
 	}
 	
 	public static void testeJpaQuarto() {
@@ -167,20 +214,6 @@ public static void testeJpaHospede() {
 		
 		
 		System.out.println("Delete do Objeto");
-		/*new Hotel(null, "Hotel Santo Antônio", "Neropolis", 3);
-		System.out.println(hotelDeleta);
-		System.out.println("persistindo");
-		em.getTransaction().begin();
-		em.persist(hotelDeleta);
-		em.getTransaction().commit();
-		System.out.println("novo objeto");
-		System.out.println(hotelDeleta);*/
-		/*Hotel hotelDeleta = em.find(Hotel.class, 5);
-		
-		em.getTransaction().begin();
-		em.remove(hotelDeleta);
-		em.getTransaction().commit();
-		*/
 		
 		DaoFactory.closeConnection();
 	}
